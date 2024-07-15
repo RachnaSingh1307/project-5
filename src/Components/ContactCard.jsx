@@ -1,8 +1,19 @@
+import { deleteDoc } from "firebase/firestore/lite";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { IoMdTrash } from "react-icons/io";
 import { RiEditCircleLine } from "react-icons/ri";
+import { db } from "../config/firebase";
+import { doc } from "firebase/firestore";
 
 const ContactCard = ({ contact }) => {
+  const deleteContact = async (id) => {
+    try {
+      await deleteDoc(doc(db, "users", id));
+    } catch (error) {
+      console.error("Error deleting document: ", error);
+    }
+  };
+
   return (
     <div
       key={contact.id}
@@ -18,7 +29,7 @@ const ContactCard = ({ contact }) => {
       </div>
       <div className="flex text-2xl">
         <RiEditCircleLine className="text-orange" />
-        <IoMdTrash />
+        <IoMdTrash onClick={() => deleteContact(contact.id)} />
       </div>
     </div>
   );
