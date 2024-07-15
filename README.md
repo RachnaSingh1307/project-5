@@ -45,4 +45,8 @@ run this command on terminal
 4. and then use the name of the icon and also forst import the icon name from react-icon.
 5. We use "FiSearch,CiCirclePlus, AiOutlineClose, HiOutlineUserCircle, RiEditCircleLine, IoMdTrash"
 
-
+# we use Formik 
+1. we create a custom modal(card pop-up) for adding new contact
+2. In this we create a form for creating form we use an external library(Formik)
+3. go to terminal and run command : "npm i formik"
+4. and then import it in the modal.jsx and create a form inside the <formik></formik/>
