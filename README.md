@@ -51,7 +51,7 @@ run this command on terminal
 3. go to terminal and run command : "npm i formik"
 4. and then import it in the modal.jsx and create a form inside the <formik></formik/>
 
-#import react-toastify package
+# import react-toastify package
 1.official wewbsite https://www.npmjs.com/package/react-toastify
 2. this is used for giving the alter to the user for update, delete, and add new contact.
 3. go to terminal and run command : "npm i react-toastify"
@@ -59,7 +59,7 @@ run this command on terminal
   import 'react-toastify/dist/ReactToastify.css';
 5. And the use as Component <ToastContainer>
 
-#download Yup
+# download Yup
 1. yup is used for validation of form
 2. go to terminal and run command : "npm i yup"
 3. then import it in to file "import * as Yub from "yup""
