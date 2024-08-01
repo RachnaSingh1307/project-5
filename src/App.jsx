@@ -61,10 +61,10 @@ const App = () => {
 
   return (
     <>
-      <div className="max-auto max-w-[370px] px-3 m-2">
+      <div className=" max-auto max-w-[370px] px-3 m-2 ">
         <Navbar />
         <div className="flex gap-4">
-          <div className="relative flex items-center flex-grow">
+          <div className="relative flex items-center flex-grow ">
             <FiSearch className=" ml-1 absolute text-white text-3xl" />
             <input
               onChange={filterContacts}
