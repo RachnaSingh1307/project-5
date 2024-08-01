@@ -1,37 +1,53 @@
-import { deleteDoc } from "firebase/firestore/lite";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { IoMdTrash } from "react-icons/io";
 import { RiEditCircleLine } from "react-icons/ri";
+import AddAndUpdate from "./AddAndUpdate";
+import useDisclouse from "../hooks/useDisclouse";
 import { db } from "../config/firebase";
-import { doc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const ContactCard = ({ contact }) => {
+  const { isOpen, onClose, onOpen } = useDisclouse();
+
   const deleteContact = async (id) => {
     try {
-      await deleteDoc(doc(db, "users", id));
+      await deleteDoc(doc(db, "contacts", id));
+      toast.success("Contact Deleted successfully");
     } catch (error) {
-      console.error("Error deleting document: ", error);
+      console.log(error);
     }
   };
 
   return (
-    <div
-      key={contact.id}
-      className="flex items-center justify-between rounded-lg bg-white p-4 mt-4"
-    >
-      <div className="flex gap-1">
-        <HiOutlineUserCircle className="text-orange text-6xl mt-1 " />
-        <div className="">
-          <h2 className="font-medium">{contact.Name}</h2>
-          <p className="text-sm">{contact.Email}</p>
-          <p className="text-sm">{contact.Number}</p>
+    <>
+      <div
+        key={contact.id}
+        className="flex items-center justify-between rounded-lg bg-white p-4 mt-4"
+      >
+        <div className="flex gap-1">
+          <HiOutlineUserCircle className="text-orange text-6xl mt-1 " />
+          <div className="">
+            <h2 className="font-medium">{contact.name}</h2>
+            <p className="text-sm">{contact.email}</p>
+            <p className="text-sm">{contact.number}</p>
+          </div>
+        </div>
+        <div className="flex text-2xl">
+          <RiEditCircleLine onClick={onOpen} className="cursor-pointer" />
+          <IoMdTrash
+            onClick={() => deleteContact(contact.id)}
+            className="text-orange cursor-pointer"
+          />
         </div>
       </div>
-      <div className="flex text-2xl">
-        <RiEditCircleLine className="text-orange" />
-        <IoMdTrash onClick={() => deleteContact(contact.id)} />
-      </div>
-    </div>
+      <AddAndUpdate
+        contact={contact}
+        isUpdate
+        isOpen={isOpen}
+        onClose={onClose}
+      />
+    </>
   );
 };
 export default ContactCard;
